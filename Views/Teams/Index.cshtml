@@ -1,5 +1,33 @@
+@model IEnumerable<FootballHobby.Models.Team>
+
 @{
-    ViewData["Title"] = "Teams";
+    ViewData["Title"] = "NFL Teams";
 }
-<h2>Teams</h2>
-<p>This is a placeholder Teams page.</p>
+
+<h2>NFL Teams</h2>
+
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Team Name</th>
+            <th>City</th>
+            <th>Conference</th>
+            <th>Division</th>
+            <th>Head Coach</th>
+            <th>Players</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var team in Model)
+    {
+        <tr>
+            <td>@team.Name</td>
+            <td>@team.City</td>
+            <td>@team.Conference</td>
+            <td>@team.Division</td>
+            <td>@team.HeadCoach</td>
+            <td>@(team.Players?.Count ?? 0)</td>
+        </tr>
+    }
+    </tbody>
+</table>

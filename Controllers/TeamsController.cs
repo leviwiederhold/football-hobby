@@ -1,12 +1,26 @@
+using FootballHobby.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FootballHobby.Controllers
 {
     public class TeamsController : Controller
     {
-        public IActionResult Index()
+        private readonly FootballContext _context;
+
+        public TeamsController(FootballContext context)
         {
-            return View();
+            _context = context;
+        }
+
+        // GET: /Teams
+        public async Task<IActionResult> Index()
+        {
+            var teams = await _context.Teams
+                .Include(t => t.Players)
+                .ToListAsync();
+
+            return View(teams);
         }
     }
 }

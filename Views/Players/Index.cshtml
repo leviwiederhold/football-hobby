@@ -1,5 +1,29 @@
+@model IEnumerable<FootballHobby.Models.Player>
+
 @{
-    ViewData["Title"] = "Players";
+    ViewData["Title"] = "NFL Players";
 }
-<h2>Players</h2>
-<p>Players page placeholder.</p>
+
+<h2>NFL Players</h2>
+
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Jersey #</th>
+            <th>Team</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var player in Model)
+    {
+        <tr>
+            <td>@player.Name</td>
+            <td>@player.Position</td>
+            <td>@player.JerseyNumber</td>
+            <td>@player.Team?.Name</td>
+        </tr>
+    }
+    </tbody>
+</table>
